@@ -1,6 +1,13 @@
 import s from './Input.module.css';
 
-const Input = ({ placeholder = '', width = 300, labelTxt = 'Label text' }) => {
+const Input = ({
+	placeholder = '',
+	width = 300,
+	labelTxt = 'Label text',
+	value = '',
+	type = 'text',
+	onChange,
+}) => {
 	return (
 		<div className={s.wrapper}>
 			<label htmlFor='searchText' className={s.labelTxt}>
@@ -8,10 +15,12 @@ const Input = ({ placeholder = '', width = 300, labelTxt = 'Label text' }) => {
 			</label>
 			<input
 				name='searchText'
-				type='text'
+				type={type}
 				style={{ width: width + 'px', marginRight: '10px' }}
 				className={s.txtInput}
 				placeholder={placeholder}
+				value={value}
+				onChange={onChange}
 			/>
 		</div>
 	);

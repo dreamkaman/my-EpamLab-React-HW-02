@@ -24,7 +24,7 @@ const App = () => {
 			</Context.Provider>
 			<Routes>
 				<Route path='/login' element={<Login />} />
-				<Route path='/register' element={<Registration />} />
+				<Route path='/registration' element={<Registration />} />
 				<Route
 					path='/courses'
 					element={<Courses courses={db.mockedCoursesList} />}
