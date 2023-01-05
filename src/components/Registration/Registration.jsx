@@ -32,7 +32,7 @@ const Registration = () => {
 			password: passwordValue,
 		};
 
-		console.log('Submit!');
+		console.log(newUser);
 	};
 	return (
 		<form className={s.registrationForm} onSubmit={onSubmitHandle}>
