@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 import Input from 'common/Input';
 import Button from 'common/Button';
+import * as api from 'api/api';
 
 import s from './Registration.module.css';
 
@@ -10,6 +12,8 @@ const Registration = () => {
 	const [nameValue, setNameValue] = useState('');
 	const [emailValue, setEmailValue] = useState('');
 	const [passwordValue, setPasswordValue] = useState('');
+
+	const navigate = useNavigate();
 
 	const onChangeNameHandle = (e) => {
 		setNameValue(e.target.value);
@@ -23,7 +27,7 @@ const Registration = () => {
 		setPasswordValue(e.target.value);
 	};
 
-	const onSubmitHandle = (e) => {
+	const onSubmitHandle = async (e) => {
 		e.preventDefault();
 
 		const newUser = {
@@ -32,7 +36,13 @@ const Registration = () => {
 			password: passwordValue,
 		};
 
-		console.log(newUser);
+		const response = await api.signUpUser(newUser);
+
+		if (response?.status === 201) {
+			console.log('Works!');
+
+			navigate('/login');
+		}
 	};
 	return (
 		<form className={s.registrationForm} onSubmit={onSubmitHandle}>
