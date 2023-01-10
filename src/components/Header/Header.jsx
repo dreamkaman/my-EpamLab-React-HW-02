@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import Logo from './components/Logo/Logo';
 import LogOut from './components/LogOut/LogOut';
-import Button from 'common/Button';
 
 import { Context } from 'Context';
 
@@ -11,10 +10,6 @@ import s from './Header.module.css';
 
 const Header = () => {
 	const context = useContext(Context);
-
-	const onClickHandle = () => {
-		context.onClickHandle(true);
-	};
 
 	return (
 		<header>
@@ -25,9 +20,6 @@ const Header = () => {
 
 				<p className={s.logoText}>courses</p>
 			</div>
-			{!context.isLoggined && (
-				<Button btnText='Login' onClick={onClickHandle} />
-			)}
 			{context.isLoggined && <LogOut onclick={context.onClickHandle} />}
 		</header>
 	);

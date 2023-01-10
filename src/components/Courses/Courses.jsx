@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import CourseCard from './components/CourseCard/CourseCard';
 import Button from 'common/Button';
@@ -13,9 +14,11 @@ import s from './Courses.module.css';
 
 const Courses = () => {
 	const context = useContext(Context);
+	const navigate = useNavigate();
 
 	const onAddNewCourseClick = () => {
-		context.setShowCourses(false);
+		// context.setShowCourses(false);
+		navigate('/courses/add');
 	};
 
 	return (
