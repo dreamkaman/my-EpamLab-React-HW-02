@@ -6,6 +6,8 @@ import Courses from 'components/Courses';
 import CourseInfo from 'components/CourseInfo';
 import Registration from 'components/Registration';
 import Login from 'components/Login';
+import CreateCourse from 'components/CreateCourse';
+import ProtectedRoute from 'common/ProtectedRoute';
 
 import { Context } from './Context';
 
@@ -26,8 +28,19 @@ const App = () => {
 		}
 	}, [filter]);
 
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		console.log(token);
+		if (token) {
+			setIsLoggined(true);
+		}
+	}, []);
+
 	const onClickHandle = (value) => {
 		setIsLoggined(value);
+		if (!value) {
+			localStorage.setItem('token', null);
+		}
 	};
 	return (
 		<>
@@ -41,14 +54,46 @@ const App = () => {
 					setCourses,
 					authors,
 					setAuthors,
+					setIsLoggined,
 				}}
 			>
 				<Header />
 				<Routes>
 					<Route path='/login' element={<Login />} />
 					<Route path='/registration' element={<Registration />} />
-					<Route path='/courses' element={<Courses />} />
-					<Route path='/courses/:courseId' element={<CourseInfo />} />
+
+					<Route
+						path='/'
+						element={isLoggined ? <Courses /> : <Registration />}
+					/>
+
+					<Route
+						path='/courses'
+						element={
+							<ProtectedRoute isLoggined={isLoggined}>
+								<Courses />
+							</ProtectedRoute>
+						}
+					/>
+
+					<Route
+						path='/courses/add'
+						element={
+							<ProtectedRoute isLoggined={isLoggined}>
+								<CreateCourse />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='/courses/:courseId'
+						element={
+							<ProtectedRoute isLoggined={isLoggined}>
+								<CourseInfo />
+							</ProtectedRoute>
+						}
+					/>
+
+					<Route path='*' element={<p>Something went wrong: 404!</p>} />
 				</Routes>
 			</Context.Provider>
 		</>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Input from 'common/Input';
@@ -7,9 +7,11 @@ import Button from 'common/Button';
 import { loginUser } from 'api/api';
 
 import s from './Login.module.css';
+import { Context } from '../../Context';
 
 const Login = () => {
 	const navigate = useNavigate();
+	const context = useContext(Context);
 
 	const [emailValue, setEmailValue] = useState('');
 	const [passwordValue, setPasswordValue] = useState('');
@@ -38,7 +40,10 @@ const Login = () => {
 
 			localStorage.setItem('token', token);
 
+			context.setIsLoggined(true);
+
 			navigate('/courses');
+			console.log('NU!?');
 		}
 	};
 
@@ -58,7 +63,7 @@ const Login = () => {
 				type='password'
 				onChange={onChangePasswordHandle}
 			/>
-			<Button btnText='Registration' type='submit' />
+			<Button btnText='Login' type='submit' />
 			<p className={s.warning}>
 				If you have an account you can{' '}
 				<Link to='/registration' className={s.registrationLink}>
