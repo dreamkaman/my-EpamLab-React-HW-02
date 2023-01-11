@@ -67,7 +67,7 @@ const Login = () => {
 			<p className={s.warning}>
 				If you have an account you can{' '}
 				<Link to='/registration' className={s.registrationLink}>
-					Login
+					Registration
 				</Link>
 			</p>
 		</form>
