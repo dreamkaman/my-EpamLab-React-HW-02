@@ -17,7 +17,6 @@ const Courses = () => {
 	const navigate = useNavigate();
 
 	const onAddNewCourseClick = () => {
-		// context.setShowCourses(false);
 		navigate('/courses/add');
 	};
 
@@ -32,6 +31,7 @@ const Courses = () => {
 					console.log(course);
 					return (
 						<CourseCard
+							id={course.id}
 							key={course.id}
 							title={course.title}
 							description={course.description}
