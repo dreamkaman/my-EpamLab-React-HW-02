@@ -11,7 +11,6 @@ import s from './CourseInfo.module.css';
 
 const CourseInfo = () => {
 	const { courseId } = useParams();
-	console.log(courseId);
 
 	const context = useContext(Context);
 

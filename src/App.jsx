@@ -31,7 +31,6 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
-
 		if (!filter) {
 			setCourses(initialCoursesSet);
 		}

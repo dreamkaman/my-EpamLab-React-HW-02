@@ -1,12 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import Button from 'common/Button';
 
 import s from './CourseCard.module.css';
 
 const CourseCard = ({ id, title, description, authors, duration, created }) => {
-	const onShowCourseClickHandle = (e) => {
-		console.log(e.target);
+	const navigate = useNavigate();
+
+	const onShowCourseClickHandle = () => {
+		navigate(`/courses/${id}`);
 	};
-	
+
 	return (
 		<li className={s.courseCard}>
 			<div className={s.courseCardLeftSide}>
