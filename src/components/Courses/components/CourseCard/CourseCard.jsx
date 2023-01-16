@@ -6,6 +6,7 @@ const CourseCard = ({ id, title, description, authors, duration, created }) => {
 	const onShowCourseClickHandle = (e) => {
 		console.log(e.target);
 	};
+	
 	return (
 		<li className={s.courseCard}>
 			<div className={s.courseCardLeftSide}>

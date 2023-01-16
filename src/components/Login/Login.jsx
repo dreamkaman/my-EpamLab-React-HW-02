@@ -31,19 +31,14 @@ const Login = () => {
 
 		const response = await loginUser(reqUser);
 
-		console.log(response);
-
 		if (response?.status === 201) {
 			const token = response?.data?.result.split(' ')[1];
-
-			console.log(token);
 
 			localStorage.setItem('token', token);
 
 			context.setIsLoggined(true);
 
 			navigate('/courses');
-			console.log('NU!?');
 		}
 	};
 

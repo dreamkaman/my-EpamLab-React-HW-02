@@ -15,8 +15,6 @@ const CourseInfo = () => {
 
 	const context = useContext(Context);
 
-	console.log(context);
-
 	const course = context.courses.find((course) => course.id === courseId);
 
 	return (

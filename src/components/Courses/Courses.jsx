@@ -28,7 +28,6 @@ const Courses = () => {
 			</div>
 			<ul>
 				{context.courses.map((course) => {
-					console.log(course);
 					return (
 						<CourseCard
 							id={course.id}

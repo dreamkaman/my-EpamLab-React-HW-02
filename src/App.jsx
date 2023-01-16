@@ -23,25 +23,27 @@ const App = () => {
 	const [authors, setAuthors] = useState(authorsInitial);
 
 	useEffect(() => {
-		if (!filter) {
-			setCourses(initialCoursesSet);
-		}
-	}, [filter]);
-
-	useEffect(() => {
 		const token = localStorage.getItem('token');
-		console.log(token);
+
 		if (token) {
 			setIsLoggined(true);
 		}
 	}, []);
 
+	useEffect(() => {
+
+		if (!filter) {
+			setCourses(initialCoursesSet);
+		}
+	}, [filter]);
+
 	const onClickHandle = (value) => {
 		setIsLoggined(value);
 		if (!value) {
-			localStorage.setItem('token', null);
+			localStorage.setItem('token', false);
 		}
 	};
+
 	return (
 		<>
 			<Context.Provider
