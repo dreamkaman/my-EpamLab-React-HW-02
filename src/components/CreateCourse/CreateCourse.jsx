@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidV4 } from 'uuid';
 
 import Button from 'common/Button';
@@ -20,6 +21,7 @@ const CreateCourse = () => {
 	const [selectedAuthors, setSelectedAuthors] = useState([]);
 
 	const context = useContext(Context);
+	const navigate = useNavigate();
 
 	const onChangeTitleHandle = (e) => {
 		setTitle(e.target.value);
@@ -34,8 +36,8 @@ const CreateCourse = () => {
 	};
 
 	const onCancelClick = () => {
-		context.setShowCourses(true);
 		context.setAuthors([...context.authors, ...selectedAuthors]);
+		navigate('/courses');
 	};
 
 	const onSubmitHandle = (e) => {
@@ -68,7 +70,7 @@ const CreateCourse = () => {
 			},
 		]);
 
-		context.setShowCourses(true);
+		setSelectedAuthors([]);
 		context.setAuthors([...context.authors, ...selectedAuthors]);
 	};
 

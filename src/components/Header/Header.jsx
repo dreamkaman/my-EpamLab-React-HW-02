@@ -10,7 +10,7 @@ import s from './Header.module.css';
 
 const Header = () => {
 	const context = useContext(Context);
-
+	console.log(context.isLoggined);
 	return (
 		<header>
 			<div className={s.wrapper}>
@@ -20,7 +20,7 @@ const Header = () => {
 
 				<p className={s.logoText}>courses</p>
 			</div>
-			{context.isLoggined && <LogOut onclick={context.onClickHandle} />}
+			{context.isLoggined && <LogOut />}
 		</header>
 	);
 };
