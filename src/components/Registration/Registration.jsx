@@ -39,8 +39,6 @@ const Registration = () => {
 		const response = await api.signUpUser(newUser);
 
 		if (response?.status === 201) {
-			console.log('Works!');
-
 			navigate('/login');
 		}
 	};

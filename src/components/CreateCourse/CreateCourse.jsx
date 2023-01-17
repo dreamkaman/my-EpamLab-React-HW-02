@@ -70,8 +70,12 @@ const CreateCourse = () => {
 			},
 		]);
 
-		setSelectedAuthors([]);
 		context.setAuthors([...context.authors, ...selectedAuthors]);
+
+		setSelectedAuthors([]);
+		setTitle('');
+		setDescription('');
+		setDuration('');
 	};
 
 	const onCreateAuthorClickHandle = () => {
