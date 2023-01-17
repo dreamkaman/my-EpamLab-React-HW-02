@@ -39,7 +39,7 @@ const App = () => {
 	const onClickHandle = (value) => {
 		setIsLoggined(value);
 		if (!value) {
-			localStorage.setItem('token', false);
+			localStorage.setItem('token', '');
 		}
 	};
 
