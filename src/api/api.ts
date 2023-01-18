@@ -7,11 +7,11 @@ const instance = axios.create({
 	},
 });
 
-type IResponse = {
+interface IResponse {
 	name: string;
 	email: string;
 	password: string;
-};
+}
 
 export const signUpUser = async ({ name, email, password }: IResponse) => {
 	try {
