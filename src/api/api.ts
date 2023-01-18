@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const instance = axios.create({
 	baseURL: 'http://localhost:4000',
 	headers: {
@@ -6,7 +7,13 @@ const instance = axios.create({
 	},
 });
 
-export const signUpUser = async ({ name, email, password }) => {
+type IResponse = {
+	name: string;
+	email: string;
+	password: string;
+};
+
+export const signUpUser = async ({ name, email, password }: IResponse) => {
 	try {
 		const response = await instance.post('/register', {
 			name,
