@@ -40,8 +40,6 @@ const instance = axios.create({
 	},
 });
 
-console.dir(instance.defaults.headers);
-
 export const signUpUser: SignUpUserFn = async ({ name, email, password }) => {
 	try {
 		const response: ISignUpUserRes = await instance.post('/register', {

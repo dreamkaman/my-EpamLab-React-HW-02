@@ -16,8 +16,6 @@ const LogOut = ({ userName = 'Anonymous' }) => {
 		const token = localStorage.getItem('token');
 		const response = await logOutUser(token);
 
-		console.log(response);
-
 		if (response.status === 200) {
 			localStorage.setItem('token', '');
 			context.setIsLoggined(false);
