@@ -1,5 +1,7 @@
 import { createContext } from 'react';
 
+import { IAuthor } from 'helpers/authorsString';
+
 interface ICourse {
 	id: string;
 	title: string;
@@ -16,7 +18,7 @@ interface IContext {
 	setFilter: (filter: string) => void;
 	courses: ICourse[];
 	setCourses: (course: ICourse) => void;
-	authors: string[];
+	authors: IAuthor[];
 	setAuthors: (author: string) => void;
 	setIsLoggined: (value: boolean) => void;
 }
