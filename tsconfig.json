@@ -1,15 +1,18 @@
 {
-  "include": ["src"],
-  "exclude": ["node_modules"], 
+  "include": ["src", "./declarations.d.ts"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
-    "target": "ES2015",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "target": "ES5",
     "removeComments": true,
     "baseUrl": "src",
     "module": "commonjs",
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    // "noImplicitAny": false, 
+    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true
   },
   "$schema": "https://json.schemastore.org/tsconfig",
