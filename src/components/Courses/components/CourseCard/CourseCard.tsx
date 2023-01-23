@@ -1,9 +1,25 @@
+import { FC } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import Button from 'common/Button';
 
 import s from './CourseCard.module.css';
 
-const CourseCard = ({ id, title, description, authors, duration, created }) => {
+import { ICourseBase } from 'Context';
+import { durationTransform } from 'helpers/pipeDuration';
+
+interface ICourseCardProps extends ICourseBase {
+	authors: string;
+}
+
+const CourseCard: FC<ICourseCardProps> = ({
+	id,
+	title,
+	description,
+	authors,
+	duration,
+	creationDate,
+}) => {
 	const navigate = useNavigate();
 
 	const onShowCourseClickHandle = () => {
@@ -23,11 +39,11 @@ const CourseCard = ({ id, title, description, authors, duration, created }) => {
 				</p>
 				<p>
 					<span>Duration: </span>
-					{duration} hours
+					{durationTransform(duration)} hours
 				</p>
 				<p>
 					<span>Created: </span>
-					{created}
+					{creationDate}
 				</p>
 				<Button
 					id={id}

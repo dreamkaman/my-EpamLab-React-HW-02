@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 
 import Input from 'common/Input';
 import Button from 'common/Button';
@@ -8,16 +8,21 @@ import s from './SearchBar.module.css';
 
 import * as db from 'helpers/mockedDataBase';
 
-const SearchBar = ({ value = '', setFilter }) => {
+interface ISearchBarProps {
+	value: string;
+	setFilter: (value: string) => void;
+}
+
+const SearchBar: FC<ISearchBarProps> = ({ value = '', setFilter }) => {
 	const context = useContext(Context);
 
-	const onChangeHandle = (e) => {
-		setFilter(e.target.value);
+	const onChangeHandle = (e: React.FormEvent<HTMLInputElement>) => {
+		setFilter(e.currentTarget.value);
 	};
 
-	const onSubmitHandle = (e) => {
+	const onSubmitHandle = (e: React.SyntheticEvent) => {
 		e.preventDefault();
-		context.setCourses(db.mockedCoursesList);
+		context.setCourses(() => db.mockedCoursesList);
 		const filter = context.filter.toLowerCase();
 		if (filter) {
 			const foundCourses = context.courses.filter(
@@ -25,7 +30,7 @@ const SearchBar = ({ value = '', setFilter }) => {
 					course.id.toLowerCase().includes(filter) ||
 					course.title.toLowerCase().includes(filter)
 			);
-			context.setCourses(foundCourses);
+			context.setCourses(() => foundCourses);
 		}
 	};
 

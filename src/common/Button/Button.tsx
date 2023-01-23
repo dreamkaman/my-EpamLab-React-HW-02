@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import styles from './Button.module.css';
 
 interface IButtonProps {
 	id?: string;
 	btnText: string;
-	onClick: () => void;
-	type?: 'button';
+	onClick?: React.MouseEventHandler<HTMLElement>;
+	type?: 'button' | 'submit';
 }
 
 const Button: FC<IButtonProps> = ({

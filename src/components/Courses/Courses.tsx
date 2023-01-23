@@ -8,7 +8,6 @@ import { Context } from 'Context';
 
 import { convertAuthorsIdToNames } from 'helpers/authorsString';
 import { dateTransform } from 'helpers/dateGenerator';
-import { durationTransform } from 'helpers/pipeDuration';
 
 import s from './Courses.module.css';
 
@@ -35,8 +34,8 @@ const Courses = () => {
 							title={course.title}
 							description={course.description}
 							authors={convertAuthorsIdToNames(course.authors, context.authors)}
-							duration={durationTransform(course.duration)}
-							created={dateTransform(course.creationDate)}
+							duration={course.duration}
+							creationDate={dateTransform(course.creationDate)}
 						/>
 					);
 				})}

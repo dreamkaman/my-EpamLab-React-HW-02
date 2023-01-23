@@ -2,14 +2,19 @@ import { createContext } from 'react';
 
 import { IAuthor } from 'helpers/authorsString';
 
-interface ICourse {
+export interface ICourseBase {
 	id: string;
 	title: string;
 	description: string;
 	creationDate: string;
-	duration: string;
+	duration: number;
+}
+
+export interface ICourse extends ICourseBase {
 	authors: string[];
 }
+
+// type TcbState = <T>(prev: T[]) => T[];
 
 interface IContext {
 	isLoggined: boolean;
@@ -17,9 +22,9 @@ interface IContext {
 	filter: string;
 	setFilter: (filter: string) => void;
 	courses: ICourse[];
-	setCourses: (course: ICourse) => void;
+	setCourses: (cb: (prev: ICourse[]) => ICourse[]) => void;
 	authors: IAuthor[];
-	setAuthors: (author: string) => void;
+	setAuthors: (cb: (prev: IAuthor[]) => IAuthor[]) => void;
 	setIsLoggined: (value: boolean) => void;
 }
 

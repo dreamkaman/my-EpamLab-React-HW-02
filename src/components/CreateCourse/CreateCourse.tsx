@@ -9,44 +9,50 @@ import SelectedAuthorsList from './components/SelectedAuthorsList';
 import { Context } from 'Context';
 
 import { durationTransform } from 'helpers/pipeDuration';
-import { getAuthorsIdArray } from 'helpers/authorsString';
+import { IAuthor, getAuthorsIdArray } from 'helpers/authorsString';
 
 import s from './CreateCourse.module.css';
 
 const CreateCourse = () => {
 	const [title, setTitle] = useState('');
 	const [authorName, setAuthorName] = useState(''); //state for the new author name input
-	const [duration, setDuration] = useState('');
+	const [duration, setDuration] = useState(0);
 	const [description, setDescription] = useState('');
-	const [selectedAuthors, setSelectedAuthors] = useState([]);
+	const [selectedAuthors, setSelectedAuthors] = useState<IAuthor[]>([]);
 
 	const context = useContext(Context);
 	const navigate = useNavigate();
 
-	const onChangeTitleHandle = (e) => {
+	const onChangeTitleHandle: React.ChangeEventHandler<HTMLInputElement> = (
+		e
+	) => {
 		setTitle(e.target.value);
 	};
 
-	const onChangeAuthorNameHandle = (e) => {
+	const onChangeAuthorNameHandle: React.ChangeEventHandler<HTMLInputElement> = (
+		e
+	) => {
 		setAuthorName(e.target.value);
 	};
 
-	const onChangeDurationHandle = (e) => {
-		setDuration(e.target.value);
+	const onChangeDurationHandle: React.ChangeEventHandler<HTMLInputElement> = (
+		e
+	) => {
+		setDuration(Number(e.target.value));
 	};
 
 	const onCancelClick = () => {
-		context.setAuthors([...context.authors, ...selectedAuthors]);
+		context.setAuthors(() => [...context.authors, ...selectedAuthors]);
 		navigate('/courses');
 	};
 
-	const onSubmitHandle = (e) => {
+	const onSubmitHandle = (e: React.SyntheticEvent) => {
 		e.preventDefault();
 
 		if (
 			title.length < 2 ||
 			description.length < 2 ||
-			!Number(duration) ||
+			!duration ||
 			!selectedAuthors.length
 		) {
 			alert('Please, fill in all fields');
@@ -70,12 +76,12 @@ const CreateCourse = () => {
 			},
 		]);
 
-		context.setAuthors([...context.authors, ...selectedAuthors]);
+		context.setAuthors(() => [...context.authors, ...selectedAuthors]);
 
 		setSelectedAuthors([]);
 		setTitle('');
 		setDescription('');
-		setDuration('');
+		setDuration(0);
 	};
 
 	const onCreateAuthorClickHandle = () => {
@@ -88,23 +94,25 @@ const CreateCourse = () => {
 		alert('Please, enter correct author name');
 	};
 
-	const onAddAuthorClickHandle = (e) => {
+	const onAddAuthorClickHandle: React.MouseEventHandler<HTMLElement> = (e) => {
 		const selectedAuthor = context.authors.find(
-			(author) => author.id === e.target.id
+			(author) => author.id === e.currentTarget.id
 		);
 
 		setSelectedAuthors((prev) => [selectedAuthor, ...prev]);
 
 		const restAuthors = context.authors.filter(
-			(author) => author.id !== e.target.id
+			(author) => author.id !== e.currentTarget.id
 		);
-		context.setAuthors(restAuthors);
+		context.setAuthors(() => restAuthors);
 	};
 
-	const onDeleteAuthorClickHandle = (e) => {
-		const deletedAuthorId = e.target.id;
+	const onDeleteAuthorClickHandle: React.MouseEventHandler<HTMLElement> = (
+		e
+	) => {
+		const deletedAuthorId = e.currentTarget.id;
 		const deletedAuthor = selectedAuthors.find(
-			(author) => author.id === e.target.id
+			(author) => author.id === e.currentTarget.id
 		);
 		setSelectedAuthors((prev) => {
 			const newState = prev.filter((author) => author.id !== deletedAuthorId);
@@ -125,7 +133,7 @@ const CreateCourse = () => {
 					name='title'
 					value={title}
 					onChange={onChangeTitleHandle}
-					width='400px'
+					// width='400px'
 					placeholder='Enter title'
 				/>
 				<div className={s.wrapperBtn}>
@@ -164,7 +172,7 @@ const CreateCourse = () => {
 						<Input
 							name='duration'
 							labelTxt='Duration'
-							value={duration}
+							value={duration.toString()}
 							onChange={onChangeDurationHandle}
 							placeholder={'Enter duration in minutes...'}
 						/>
