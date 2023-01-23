@@ -10,9 +10,11 @@ export interface ICourseBase {
 	duration: number;
 }
 
-interface ICourse extends ICourseBase {
+export interface ICourse extends ICourseBase {
 	authors: string[];
 }
+
+// type TcbState = <T>(prev: T[]) => T[];
 
 interface IContext {
 	isLoggined: boolean;
@@ -20,9 +22,9 @@ interface IContext {
 	filter: string;
 	setFilter: (filter: string) => void;
 	courses: ICourse[];
-	setCourses: (courses: ICourse[]) => void;
+	setCourses: (cb: (prev: ICourse[]) => ICourse[]) => void;
 	authors: IAuthor[];
-	setAuthors: (authors: IAuthor[]) => void;
+	setAuthors: (cb: (prev: IAuthor[]) => IAuthor[]) => void;
 	setIsLoggined: (value: boolean) => void;
 }
 

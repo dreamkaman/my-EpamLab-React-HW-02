@@ -1,8 +1,20 @@
+import { FC } from 'react';
+
 import Button from 'common/Button';
+
+import { IAuthor } from 'helpers/authorsString';
 
 import s from './SelectedAuthorsList.module.css';
 
-const SelectedAuthorsList = ({ selectedAuthors, onClick }) => {
+interface ISelectedAuthorsListProps {
+	selectedAuthors: IAuthor[];
+	onClick: React.MouseEventHandler<HTMLElement>;
+}
+
+const SelectedAuthorsList: FC<ISelectedAuthorsListProps> = ({
+	selectedAuthors,
+	onClick,
+}) => {
 	return (
 		<ul>
 			{selectedAuthors.map((author) => {

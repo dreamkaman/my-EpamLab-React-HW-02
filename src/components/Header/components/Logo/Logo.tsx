@@ -1,4 +1,5 @@
 import logoImg from 'images/logo.png';
+
 import s from './Logo.module.css';
 
 const Logo = () => {

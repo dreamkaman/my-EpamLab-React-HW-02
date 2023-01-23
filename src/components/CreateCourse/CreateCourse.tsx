@@ -42,7 +42,7 @@ const CreateCourse = () => {
 	};
 
 	const onCancelClick = () => {
-		context.setAuthors([...context.authors, ...selectedAuthors]);
+		context.setAuthors(() => [...context.authors, ...selectedAuthors]);
 		navigate('/courses');
 	};
 
@@ -76,7 +76,7 @@ const CreateCourse = () => {
 			},
 		]);
 
-		context.setAuthors([...context.authors, ...selectedAuthors]);
+		context.setAuthors(() => [...context.authors, ...selectedAuthors]);
 
 		setSelectedAuthors([]);
 		setTitle('');
@@ -104,7 +104,7 @@ const CreateCourse = () => {
 		const restAuthors = context.authors.filter(
 			(author) => author.id !== e.currentTarget.id
 		);
-		context.setAuthors(restAuthors);
+		context.setAuthors(() => restAuthors);
 	};
 
 	const onDeleteAuthorClickHandle: React.MouseEventHandler<HTMLElement> = (
@@ -118,7 +118,7 @@ const CreateCourse = () => {
 			const newState = prev.filter((author) => author.id !== deletedAuthorId);
 			return newState;
 		});
-		context.setAuthors((prev: IAuthor) => [...prev, { ...deletedAuthor }]);
+		context.setAuthors((prev) => [...prev, { ...deletedAuthor }]);
 	};
 
 	const onChangeDescriptionHandle = (e) => {
