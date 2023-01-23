@@ -3,6 +3,7 @@ import { ChangeEvent, FC } from 'react';
 import s from './Input.module.css';
 
 interface IInputProps {
+	name?: string;
 	placeholder?: string;
 	width?: number;
 	labelTxt?: string;
