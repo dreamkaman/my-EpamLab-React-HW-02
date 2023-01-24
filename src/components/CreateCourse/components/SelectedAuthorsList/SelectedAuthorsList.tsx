@@ -8,7 +8,7 @@ import s from './SelectedAuthorsList.module.css';
 
 interface ISelectedAuthorsListProps {
 	selectedAuthors: IAuthor[];
-	onClick: React.MouseEventHandler<HTMLElement>;
+	onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const SelectedAuthorsList: FC<ISelectedAuthorsListProps> = ({
