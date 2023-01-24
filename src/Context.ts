@@ -14,11 +14,11 @@ export interface ICourse extends ICourseBase {
 	authors: string[];
 }
 
-// type TcbState = <T>(prev: T[]) => T[];
+export type TonClickHandle = (value: boolean) => void;
 
 interface IContext {
 	isLoggined: boolean;
-	onClickHandle: () => void;
+	onClickHandle: TonClickHandle;
 	filter: string;
 	setFilter: (filter: string) => void;
 	courses: ICourse[];

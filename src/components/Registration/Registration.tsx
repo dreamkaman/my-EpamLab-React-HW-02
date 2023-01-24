@@ -15,19 +15,25 @@ const Registration = () => {
 
 	const navigate = useNavigate();
 
-	const onChangeNameHandle = (e) => {
+	const onChangeNameHandle: React.ChangeEventHandler<HTMLInputElement> = (
+		e
+	) => {
 		setNameValue(e.target.value);
 	};
 
-	const onChangeEmailHandle = (e) => {
+	const onChangeEmailHandle: React.ChangeEventHandler<HTMLInputElement> = (
+		e
+	) => {
 		setEmailValue(e.target.value);
 	};
 
-	const onChangePasswordHandle = (e) => {
+	const onChangePasswordHandle: React.ChangeEventHandler<HTMLInputElement> = (
+		e
+	) => {
 		setPasswordValue(e.target.value);
 	};
 
-	const onSubmitHandle = async (e) => {
+	const onSubmitHandle: React.FormEventHandler<HTMLFormElement> = async (e) => {
 		e.preventDefault();
 
 		const newUser = {
@@ -48,7 +54,7 @@ const Registration = () => {
 			<Input
 				placeholder='Enter name'
 				labelTxt='Name'
-				width='350'
+				width={350}
 				value={nameValue}
 				onChange={onChangeNameHandle}
 			/>

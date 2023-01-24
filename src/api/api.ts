@@ -21,6 +21,8 @@ interface ILoginUserRes {
 	successful: boolean;
 	result: string;
 	user: ILoginUserReq;
+	status: number;
+	data: { result: string };
 }
 
 interface ILogoutUserRes {

@@ -16,15 +16,19 @@ const Login = () => {
 	const [emailValue, setEmailValue] = useState('');
 	const [passwordValue, setPasswordValue] = useState('');
 
-	const onChangeEmailHandle = (e) => {
+	const onChangeEmailHandle: React.ChangeEventHandler<HTMLInputElement> = (
+		e
+	) => {
 		setEmailValue(e.target.value);
 	};
 
-	const onChangePasswordHandle = (e) => {
+	const onChangePasswordHandle: React.ChangeEventHandler<HTMLInputElement> = (
+		e
+	) => {
 		setPasswordValue(e.target.value);
 	};
 
-	const onSubmitHandle = async (e) => {
+	const onSubmitHandle: React.FormEventHandler<HTMLFormElement> = async (e) => {
 		e.preventDefault();
 
 		const reqUser = { email: emailValue, password: passwordValue };
