@@ -121,8 +121,10 @@ const CreateCourse = () => {
 		context.setAuthors((prev) => [...prev, { ...deletedAuthor }]);
 	};
 
-	const onChangeDescriptionHandle = (e) => {
-		setDescription(e.target.value);
+	const onChangeDescriptionHandle: React.ChangeEventHandler<
+		HTMLTextAreaElement
+	> = (e) => {
+		setDescription(e.currentTarget.value);
 	};
 
 	return (
