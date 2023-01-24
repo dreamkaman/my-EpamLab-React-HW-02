@@ -107,9 +107,9 @@ const CreateCourse = () => {
 		context.setAuthors(() => restAuthors);
 	};
 
-	const onDeleteAuthorClickHandle: React.MouseEventHandler<HTMLElement> = (
-		e
-	) => {
+	const onDeleteAuthorClickHandle: React.MouseEventHandler<
+		HTMLButtonElement
+	> = (e) => {
 		const deletedAuthorId = e.currentTarget.id;
 		const deletedAuthor = selectedAuthors.find(
 			(author) => author.id === e.currentTarget.id
@@ -121,8 +121,10 @@ const CreateCourse = () => {
 		context.setAuthors((prev) => [...prev, { ...deletedAuthor }]);
 	};
 
-	const onChangeDescriptionHandle = (e) => {
-		setDescription(e.target.value);
+	const onChangeDescriptionHandle: React.ChangeEventHandler<
+		HTMLTextAreaElement
+	> = (e) => {
+		setDescription(e.currentTarget.value);
 	};
 
 	return (
@@ -133,7 +135,6 @@ const CreateCourse = () => {
 					name='title'
 					value={title}
 					onChange={onChangeTitleHandle}
-					// width='400px'
 					placeholder='Enter title'
 				/>
 				<div className={s.wrapperBtn}>

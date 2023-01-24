@@ -5,7 +5,7 @@ import styles from './Button.module.css';
 interface IButtonProps {
 	id?: string;
 	btnText: string;
-	onClick?: React.MouseEventHandler<HTMLElement>;
+	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 	type?: 'button' | 'submit';
 }
 

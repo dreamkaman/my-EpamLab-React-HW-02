@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from 'common/Button';
@@ -8,7 +8,11 @@ import { logOutUser } from 'api/api';
 
 import s from './LogOut.module.css';
 
-const LogOut = ({ userName = 'Anonymous' }) => {
+interface ILogoOutProps {
+	userName?: string;
+}
+
+const LogOut: FC<ILogoOutProps> = ({ userName = 'Anonymous' }) => {
 	const navigate = useNavigate();
 	const context = useContext(Context);
 

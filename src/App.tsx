@@ -13,6 +13,8 @@ import { Context } from './Context';
 
 import * as db from 'helpers/mockedDataBase';
 
+import { TonClickHandle } from 'Context';
+
 const initialCoursesSet = db.mockedCoursesList;
 const authorsInitial = db.mockedAuthorsList;
 
@@ -36,7 +38,7 @@ const App = () => {
 		}
 	}, [filter]);
 
-	const onClickHandle = (value) => {
+	const onClickHandle: TonClickHandle = (value) => {
 		setIsLoggined(value);
 		if (!value) {
 			localStorage.setItem('token', '');
