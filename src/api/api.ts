@@ -76,8 +76,6 @@ export const logOutUser: LogOutUserFn = async (token) => {
 			},
 		});
 
-		console.log(response);
-
 		return response;
 	} catch (error) {
 		console.log(error.message);
