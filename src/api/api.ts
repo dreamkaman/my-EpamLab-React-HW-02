@@ -18,11 +18,12 @@ interface ILoginUserReq {
 }
 
 interface ILoginUserRes {
-	successful: boolean;
-	result: string;
-	user: ILoginUserReq;
 	status: number;
-	data: { result: string };
+	data: {
+		successful: boolean;
+		result: string; //token
+		user: ILoginUserReq;
+	};
 }
 
 interface ILogoutUserRes {
@@ -75,8 +76,6 @@ export const logOutUser: LogOutUserFn = async (token) => {
 				Authorization: `Bearer ${token}`,
 			},
 		});
-
-		console.log(response);
 
 		return response;
 	} catch (error) {
